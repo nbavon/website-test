@@ -35,3 +35,32 @@ pie(
   init.angle = -50, border = NA
 )
 ```
+
+```{r}
+library(tidyverse)
+library(kableExtra)
+data("midwest")
+
+str(midwest)
+N_h4 <- table(midwest$state)
+N_h4 <- midwest %>%
+  group_by(state) %>%
+  count() %>%
+  pull()
+
+N4 <- sum(N_h4)
+n4 <- 100
+n_h4 <- n4 * N_h4 / N4
+n_h4
+
+sigma_h <- midwest %>%
+  group_by(state) %>%
+  summarize(sigma = sd(poptotal)) %>%
+  pull()
+
+n_h4 <- n4 / (N_h4 * sigma_h) * sum(N_h4 * sigma_h)
+n_h4
+kable(head(n_h4), format = "html")
+
+```
+

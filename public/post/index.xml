@@ -6,10 +6,19 @@
     <description>Recent content in Posts on A Hugo website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 30 Dec 2016 21:49:57 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 05 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>1st Post</title>
+      <link>/2019/04/05/1st-post/</link>
+      <pubDate>Fri, 05 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/04/05/1st-post/</guid>
+      <description>library(tidyverse) ## ── Attaching packages ──────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ── ## ✔ ggplot2 3.1.0 ✔ purrr 0.3.2 ## ✔ tibble 2.1.1 ✔ dplyr 0.8.0.1 ## ✔ tidyr 0.8.3 ✔ stringr 1.3.1 ## ✔ readr 1.1.1 ✔ forcats 0.4.0 ## Warning: package &amp;#39;tibble&amp;#39; was built under R version 3.5.2 ## Warning: package &amp;#39;tidyr&amp;#39; was built under R version 3.5.2 ## Warning: package &amp;#39;purrr&amp;#39; was built under R version 3.5.2 ## Warning: package &amp;#39;dplyr&amp;#39; was built under R version 3.</description>
+    </item>
     
     <item>
       <title>A Plain Markdown Post</title>

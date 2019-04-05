@@ -1,0 +1,122 @@
+---
+title: 1st Post
+author: Nicole Bavon
+date: '2019-04-05'
+slug: 1st-post
+categories: []
+tags: []
+---
+
+
+
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ──────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.1.0       ✔ purrr   0.3.2  
+## ✔ tibble  2.1.1       ✔ dplyr   0.8.0.1
+## ✔ tidyr   0.8.3       ✔ stringr 1.3.1  
+## ✔ readr   1.1.1       ✔ forcats 0.4.0</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 3.5.2</code></pre>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 3.5.2</code></pre>
+<pre><code>## Warning: package &#39;purrr&#39; was built under R version 3.5.2</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 3.5.2</code></pre>
+<pre><code>## Warning: package &#39;forcats&#39; was built under R version 3.5.2</code></pre>
+<pre><code>## ── Conflicts ─────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(kableExtra)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;kableExtra&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     group_rows</code></pre>
+<pre class="r"><code>data(&quot;midwest&quot;)
+
+str(midwest)</code></pre>
+<pre><code>## Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:    437 obs. of  28 variables:
+##  $ PID                 : int  561 562 563 564 565 566 567 568 569 570 ...
+##  $ county              : chr  &quot;ADAMS&quot; &quot;ALEXANDER&quot; &quot;BOND&quot; &quot;BOONE&quot; ...
+##  $ state               : chr  &quot;IL&quot; &quot;IL&quot; &quot;IL&quot; &quot;IL&quot; ...
+##  $ area                : num  0.052 0.014 0.022 0.017 0.018 0.05 0.017 0.027 0.024 0.058 ...
+##  $ poptotal            : int  66090 10626 14991 30806 5836 35688 5322 16805 13437 173025 ...
+##  $ popdensity          : num  1271 759 681 1812 324 ...
+##  $ popwhite            : int  63917 7054 14477 29344 5264 35157 5298 16519 13384 146506 ...
+##  $ popblack            : int  1702 3496 429 127 547 50 1 111 16 16559 ...
+##  $ popamerindian       : int  98 19 35 46 14 65 8 30 8 331 ...
+##  $ popasian            : int  249 48 16 150 5 195 15 61 23 8033 ...
+##  $ popother            : int  124 9 34 1139 6 221 0 84 6 1596 ...
+##  $ percwhite           : num  96.7 66.4 96.6 95.3 90.2 ...
+##  $ percblack           : num  2.575 32.9 2.862 0.412 9.373 ...
+##  $ percamerindan       : num  0.148 0.179 0.233 0.149 0.24 ...
+##  $ percasian           : num  0.3768 0.4517 0.1067 0.4869 0.0857 ...
+##  $ percother           : num  0.1876 0.0847 0.2268 3.6973 0.1028 ...
+##  $ popadults           : int  43298 6724 9669 19272 3979 23444 3583 11323 8825 95971 ...
+##  $ perchsd             : num  75.1 59.7 69.3 75.5 68.9 ...
+##  $ percollege          : num  19.6 11.2 17 17.3 14.5 ...
+##  $ percprof            : num  4.36 2.87 4.49 4.2 3.37 ...
+##  $ poppovertyknown     : int  63628 10529 14235 30337 4815 35107 5241 16455 13081 154934 ...
+##  $ percpovertyknown    : num  96.3 99.1 95 98.5 82.5 ...
+##  $ percbelowpoverty    : num  13.15 32.24 12.07 7.21 13.52 ...
+##  $ percchildbelowpovert: num  18 45.8 14 11.2 13 ...
+##  $ percadultpoverty    : num  11.01 27.39 10.85 5.54 11.14 ...
+##  $ percelderlypoverty  : num  12.44 25.23 12.7 6.22 19.2 ...
+##  $ inmetro             : int  0 0 0 1 0 0 0 0 0 1 ...
+##  $ category            : chr  &quot;AAR&quot; &quot;LHR&quot; &quot;AAR&quot; &quot;ALU&quot; ...</code></pre>
+<pre class="r"><code>N_h4 &lt;- table(midwest$state)
+N_h4 &lt;- midwest %&gt;%
+  group_by(state) %&gt;%
+  count() %&gt;%
+  pull()
+
+N4 &lt;- sum(N_h4)
+n4 &lt;- 100
+n_h4 &lt;- n4 * N_h4 / N4
+n_h4</code></pre>
+<pre><code>## [1] 23.34096 21.05263 18.99314 20.13730 16.47597</code></pre>
+<pre class="r"><code>sigma_h &lt;- midwest %&gt;%
+  group_by(state) %&gt;%
+  summarize(sigma = sd(poptotal)) %&gt;%
+  pull()
+
+n_h4 &lt;- n4 / (N_h4 * sigma_h) * sum(N_h4 * sigma_h)
+n_h4</code></pre>
+<pre><code>## [1]  214.5752 1191.1838  494.2587  595.9839 1251.5659</code></pre>
+<pre class="r"><code>kable(head(n_h4), format = &quot;html&quot;)</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+x
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+214.5752
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1191.1838
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+494.2587
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+595.9839
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1251.5659
+</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>ggplot(mpg, aes(x = class, y = hwy)) + 
+  geom_boxplot()</code></pre>
+<p><img src="/post/2019-04-05-1st-post_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
